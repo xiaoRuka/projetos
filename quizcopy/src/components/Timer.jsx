@@ -5,7 +5,7 @@ function Timer() {
   return (
     <div className={`flex items-cent space-x-2`}>
       <Clock size={20} />
-      <span className="font-mono">Time Left</span>
+      <span className="font-mono text-lg font-semibold">Time Left</span>
     </div>
   );
 }
