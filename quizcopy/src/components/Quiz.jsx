@@ -1,11 +1,15 @@
 import ProgressBar from "./Progressbar";
 import { QuizStart } from "./QuizStart";
 import Timer from "./Timer";
+import Questions from "./Questions";
+import Results from "./Results";
 
 export function Quiz() {
   return (
-    <Timer />
+    <Results />
 
+    //<Questions />
+    //<Timer />
     //<ProgressBar />
     //<QuizStart />
     //<div className="min-h-screen bg-gradient-to-br from blue via-white to-puple-py-8 px-4">
