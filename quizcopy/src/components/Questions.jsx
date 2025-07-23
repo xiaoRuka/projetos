@@ -1,14 +1,55 @@
 import React from "react";
 import { ArrowLeft, ArrowRight, CheckCircle } from "lucide-react";
+import { useSelector } from "react-redux";
 
 function Questions() {
+  const { questions, currentQuestionIndex, answers, showExplanation } =
+    useSelector((state) => state.quiz);
+
+  const currentQuestion = questions[currentQuestionIndex];
+  const currentAnswer = answers.find(
+    (answer) => answer.questionId == currentQuestion.id
+  );
+
   return (
     <div className="max-w-4xl mx-auto">
       <div className="bg-white rounded-2xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl">
         <div className="mb-8">
-          <h2>Questões</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-6 leading-realxed">
+            {currentQuestion.question}
+          </h2>
           {/*Display Dynamic Answer*/}
-          <div className="grid gap-4"></div>
+          <div className="grid gap-4">
+            {currentQuestion.options.map((option, index) => {
+              const isSelected = currentAnswer?.selectedOption === index;
+              const isCorrect = index == currentQuestion.correctAnswer;
+              const isWrong = isSelected && !isCorrect && showExplanation;
+
+              let buttonClass = `w-full p4 text-left rounde-xl border-1 border-gray-300 transition-all duration-200`;
+
+              if (showExplanation) {
+                if (isCorrect) {
+                  buttonClass += `border-green-500 bg-green-50 text-green-800`;
+                } else if (isWrong) {
+                  buttonClass += `border-red-500 bg-red-50 text-red-800`;
+                } else {
+                  buttonClass += `border-gray-200 bg-gray-50 text-gray-600`;
+                }
+              } else if (isSelected) {
+                buttonClass += `border-blue-200 bg-blue-50 text-blue-800`;
+              } else {
+                buttonClass += `border-gray-200 bg-white text-gray-700 hover: border-blue-300 hover:shadow-md`;
+              }
+
+              return (
+                <button key={index}>
+                  <div className="flex items-center justify-between">
+                    <span>{option}</span>
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/*Show explanation */}
