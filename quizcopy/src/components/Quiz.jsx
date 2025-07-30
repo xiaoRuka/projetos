@@ -39,7 +39,7 @@ export function Quiz() {
   //is completed quiz
   if (isQuizCompleted) {
     return (
-      <div className="min-h-screen bg-gradient to-br from-blue-50 via-white to-purple-50 py-6 px-4 flex items-center justify-center">
+      <div className="min-h-screen bg-gradient to-br from-blue-50 via-white to-purple-50 py-6 px-4">
         <Results />
       </div>
     );
